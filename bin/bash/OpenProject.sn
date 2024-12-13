@@ -1,0 +1,19 @@
+#! /bin/bash
+echo Prepare Debian Linux distro for OpenProject installation.
+apt update
+apt install apt-transport-https ca-certificates wget gpg -y
+echo Import the PGP key used to sign the installation package
+wget -qO- https://dl.packager.io/srv/opf/openproject/key | gpg --dearmor > /etc/apt/trusted.gpg.d/packager-io.gpg
+echo Download the OpenProject installation package.
+wget -O /etc/apt/sources.list.d/openproject.list \
+  https://dl.packager.io/srv/opf/openproject/stable/15/installer/debian/12.repo
+echo Execute the OpenProject installation package installer.
+apt update
+apt install openproject -y
+echo Interactive Configuration Wizard
+echo ================================
+echo To configure OpenProject using the interactive wizard run `openproject reconfigure`
+echo ----
+echo Non-Interactive Configuration
+echo =============================
+echo To configure OpenProject using the values stored in /etc/openproject/installer.dat run `openproject configure`
