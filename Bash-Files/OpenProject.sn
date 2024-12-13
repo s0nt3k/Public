@@ -1,4 +1,4 @@
-#! Installs OpenProject and starts the configuration wizard
+#! /bin/bash
 echo Prepare Debian Linux distro for OpenProject installation.
 apt update
 apt install apt-transport-https ca-certificates wget gpg -y
